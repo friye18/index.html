@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo para mi amor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background-color: #1a1a1d;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, .message {
+            font-family: 'Dancing Script', cursive; /* Fuente romántica */
+        }
+
+        /* Animación del regalo al pasar el mouse */
+        #giftBox {
+            width: 220px;
+            height: 220px;
+            background-color: red;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s, box-shadow 0.5s;
+            z-index: 1;
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Brillo para resaltar el regalo */
+        }
+
+        #giftBox:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 255, 0, 1); /* Efecto brillante al pasar el mouse */
+        }
+
+        #giftBox::before, #giftBox::after {
+            content: '';
+            position: absolute;
+            background: black;
+        }
+
+        #giftBox::before {
+            width: 100%;
+            height: 20px;
+            top: 90px;
+            left: 0;
+        }
+
+        #giftBox::after {
+            width: 20px;
+            height: 100%;
+            left: 90px;
+            top: 0;
+        }
+
+        /* Estilos del ramo de flores */
+        #flowers {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out forwards;
+            position: relative;
+        }
+
+        .flower {
+            font-size: 250px;
+            color: pink;
+            animation: rotate 3s infinite; /* Animación de rotación */
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(0); }
+        }
+
+        /* Estilo del mensaje */
+        .message {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+        /* Números en los laterales */
+        .side-number {
+            position: absolute;
+            font-size: 80px;
+            color: white;
+            display: none;
+        }
+
+        .left-number {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .right-number {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Imágenes en las esquinas */
+        .corner-img {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            display: none;
+            border: 5px solid pink;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8); /* Sombra brillante rosada */
+        }
+
+        .top-left { top: 10px; left: 10px; }
+        .top-right { top: 10px; right: 10px; }
+        .bottom-left { bottom: 10px; left: 10px; }
+        .bottom-right { bottom: 10px; right: 10px; }
+
+        /* Efecto de entrada para el ramo */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Media Queries para móviles */
+        @media (max-width: 768px) {
+            #giftBox {
+                width: 150px;
+                height: 150px;
+            }
+
+            .flower {
+                font-size: 120px;
+            }
+
+            .message {
+                font-size: 24px;
+            }
+
+            .corner-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .side-number {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="giftBox" onclick="openGift()"></div>
+
+    <div id="flowers">
+        <div class="flower">💐</div>
+        <div class="message">Te quiero mucho mi amor</div>
+    </div>
+
+    <div class="side-number left-number">27</div>
+    <div class="side-number right-number">05</div>
+
+    <img src="https://i.postimg.cc/fLGrMwVR/b9d67e10-a433-4f35-bba4-86eee481fb07.jpg" alt="Esquina superior izquierda" class="corner-img top-left">
+    <img src="https://i.postimg.cc/XvHM6SKr/d09e755c-2080-4631-a0e4-1136c6bd779c.jpg" alt="Esquina superior derecha" class="corner-img top-right">
+    <img src="https://i.postimg.cc/kgjyMjk6/1c248781-e984-4792-9789-001b16f2d3e4.jpg" alt="Esquina inferior izquierda" class="corner-img bottom-left">
+    <img src="https://i.postimg.cc/0QRh8m5h/Imagen-de-Whats-App-2024-09-25-a-las-18-54-02-78012b4e.jpg" alt="Esquina inferior derecha" class="corner-img bottom-right">
+
+    <script>
+        function openGift() {
+            const giftBox = document.getElementById('giftBox');
+            const flowers = document.getElementById('flowers');
+            const images = document.querySelectorAll('.corner-img');
+            const numbers = document.querySelectorAll('.side-number');
+
+            // Ocultar el regalo y mostrar el contenido
+            giftBox.style.display = 'none';
+            flowers.style.display = 'block';
+
+            // Mostrar las imágenes en las esquinas
+            images.forEach(img => {
+                img.style.display = 'block';
+            });
+
+            // Mostrar los números
+            numbers.forEach(num => {
+                num.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
+
